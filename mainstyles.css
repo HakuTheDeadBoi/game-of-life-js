@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+#canvas-div {
+    text-align: center;
+}
+
+#gol-canvas {
+    border: 1px solid white;
+    background-color: black;
+    margin: 5px;
+}
