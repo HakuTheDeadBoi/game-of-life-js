@@ -49,10 +49,8 @@ function computeNewGeneration(main, back, rules) {
     }
 }
 
-function drawMatrix(matrix) {
-    const canvas = document.getElementById("gol-canvas");
-    const ctx = canvas.getContext("2d");
-
+function drawMatrix(canvas, ctx, matrix) {
+    /* this is bad way to determine cell size - change it! */
     const rowRate = canvas.height / matrix.length;
     const colRate = canvas.width / matrix[0].length;
 
@@ -83,8 +81,13 @@ function main() {
 
     let rules = {};
 
+    const canvas = document.getElementById("gol-canvas");
+    const ctx = canvas.getContext("2d");
+
     let ROWS = 150;  // temporarily hardcoded
     let COLS = 150;
+
+    let msecs = 100; //milliseconds between two cycles
 
     /* INIT SECTION */
     mainMatrix = getMatrix(ROWS, COLS);
@@ -106,9 +109,9 @@ function main() {
         () => {
             computeNewGeneration(mainMatrix, backMatrix, rules);
             [mainMatrix, backMatrix] = swapMatrices(mainMatrix, backMatrix);
-            drawMatrix(mainMatrix);
+            drawMatrix(canvas, ctx, mainMatrix);
         },
-        50
+        msecs
     );    
 }
 
