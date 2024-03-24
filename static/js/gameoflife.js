@@ -51,9 +51,14 @@ function computeNewGeneration(main, back, rules) {
 
 function drawMatrix(canvas, ctx, matrix) {
     /* this is bad way to determine cell size - change it! */
-    const rowRate = canvas.height / matrix.length;
-    const colRate = canvas.width / matrix[0].length;
+    const [rows, cols] = [matrix.length, matrix[0].length];
+    const rate = rows / cols;
+    const cellWidth = canvas.height / rows;
 
+    if (canvas.height / canvas.width !== rate) {
+        canvas.height = Math.floor(canvas.height * rate);
+    }
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "rgb(255 255 255)";
@@ -61,20 +66,16 @@ function drawMatrix(canvas, ctx, matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[0].length; j++) {
             if (matrix[i][j]) {
-                ctx.fillRect(i * rowRate + 1, j * colRate + 1, rowRate - 1, colRate - 1);
+                ctx.fillRect(i * cellWidth + 1, j * cellWidth + 1, cellWidth - 1, cellWidth - 1);
             }
         }
     }
 }
 
 function main() {
-    let state = true;
-
-    document.body.addEventListener("click", () => {state = true;});
-
     /* DECLARING SECTION */
     const DEAD = 0;
-    const ALIVE = 0;
+    const ALIVE = 1;
 
     let mainMatrix = [];
     let backMatrix = [];
@@ -84,12 +85,22 @@ function main() {
     const canvas = document.getElementById("gol-canvas");
     const ctx = canvas.getContext("2d");
 
-    let ROWS = 150;  // temporarily hardcoded
-    let COLS = 150;
+    const queryStr = window.location.search;
+    const urlParams = new URLSearchParams(queryStr);
 
-    let msecs = 100; //milliseconds between two cycles
+    let ROWS = 0;
+    let COLS = 0;
+
+    let msecs = 0;
 
     /* INIT SECTION */
+    ROWS = Number(urlParams.get('rows'));
+    console.log(ROWS);
+    COLS = Number(urlParams.get('columns'));
+    console.log(COLS);
+    msecs = Number(urlParams.get('speed'));
+    console.log(msecs);
+
     mainMatrix = getMatrix(ROWS, COLS);
     backMatrix = getMatrix(ROWS, COLS);
 
@@ -98,9 +109,16 @@ function main() {
         1: new Array(9).fill(0)
     };
 
-    rules[1][2] = 1;
-    rules[1][3] = 1;
-    rules[0][3] = 1;
+    for (let i = 0; i < 9; i++) {
+        if (urlParams.get('alive' + String(i)) == 'on') {
+            rules[ALIVE][i] = 1;
+        }
+        if (urlParams.get('dead' + String(i)) == 'on') {
+            rules[DEAD][i] = 1;
+        }
+    }
+
+    console.log(rules);
 
     fillMatrixWithRandom(mainMatrix);
 

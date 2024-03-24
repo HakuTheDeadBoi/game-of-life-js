@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/gamesetup.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/static/html/gameoflife.html" method="get" id="setup-form">
+            <fieldset>
+                <legend>Rules</legend>
+                <fieldset id="alive-boxes">
+                    <legend>Alive</legend>
+                    <label for="alive0">0</label>
+                    <input type="checkbox" name="alive0" id="a0">
+                    <label for="alive1">1</label>
+                    <input type="checkbox" name="alive1" id="a1">
+                    <label for="alive2">2</label>
+                    <input type="checkbox" name="alive2" id="a2" checked>
+                    <label for="alive3">3</label>
+                    <input type="checkbox" name="alive3" id="a3" checked>
+                    <label for="alive4">4</label>
+                    <input type="checkbox" name="alive4" id="a4">
+                    <label for="alive5">5</label>
+                    <input type="checkbox" name="alive5" id="a5">
+                    <label for="alive6">6</label>
+                    <input type="checkbox" name="alive6" id="a6">
+                    <label for="alive7">7</label>
+                    <input type="checkbox" name="alive7" id="a7">
+                    <label for="alive8">8</label>
+                    <input type="checkbox" name="alive8" id="a8">
+                </fieldset>
+                <fieldset id="dead-boxes">
+                    <legend>Dead</legend>
+                    <label for="dead0">0</label>
+                    <input type="checkbox" name="dead0" id="d0">
+                    <label for="dead1">1</label>
+                    <input type="checkbox" name="dead1" id="d1">
+                    <label for="dead2">2</label>
+                    <input type="checkbox" name="dead2" id="d2">
+                    <label for="dead3">3</label>
+                    <input type="checkbox" name="dead3" id="d3" checked>
+                    <label for="dead4">4</label>
+                    <input type="checkbox" name="dead4" id="d4">
+                    <label for="dead5">5</label>
+                    <input type="checkbox" name="dead5" id="d5">
+                    <label for="dead6">6</label>
+                    <input type="checkbox" name="dead6" id="d6">
+                    <label for="dead7">7</label>
+                    <input type="checkbox" name="dead7" id="d7">
+                    <label for="dead8">8</label>
+                    <input type="checkbox" name="dead8" id="d8">
+                </fieldset>
+                <fieldset id="rows-and-cols">
+                    <legend>Rows and columns</legend>
+                    <label for="rows">Rows: </label>
+                    <input type="text" name="rows" id="id-rows" value="500">
+                    <label for="columns">Cols: </label>
+                    <input type="text" name="columns" id="id-columns" value="500">
+                </fieldset>
+                <fieldset id="speed">
+                    <legend>Speed (milliseconds between generaions)</legend>
+                    <input type="text" name="speed" id="id-speed" value="100">
+                    <label for="speed">ms</label>
+                </fieldset>
+                <input type="submit" id="submit-btn" value="Run game!">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+
+fieldset {
+    align-items: center;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+#submit-btn {
+    margin: 0 auto;
+    display: block;
+}
